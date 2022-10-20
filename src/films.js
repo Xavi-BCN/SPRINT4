@@ -2,34 +2,49 @@
 // Exercise 1: Get the array of all directors.
 function getAllDirectors(array) {
   const result = array.map((film) => film.director);
-  console.log('EXERCICE 1 ->', result);
+  // console.log('EXERCICE 1 ->', result);
   return result;
 }
 
 // Exercise 2: Get the films of a certain director
+// DIU QUE ESTA BE, PERO NO VEIG EL RESULTAT EN EL LOG
 
 function getMoviesFromDirector(array, director) {
-  const moviesFromCopola = array.filter((film) => film.director == director);
-  console.log('EXERCICE 2 ->', moviesFromCopola);
-  return moviesFromCopola;
+  const moviesFromDirector = array.filter((film) => film.director === director);
+  // console.log('EXERCICE 2 ->', moviesFromDirector);
+  return moviesFromDirector;
  
 }
 
-// Exercise 3: Calculate the average of the films of a given director. ***** npm run test:watch
+// Exercise 3: Calculate the average of the films of a given director. 
 function moviesAverageOfDirector(array, director) {
- let average = 0; 
- let counter = 0;
- array.filter(item =>  {
-    if(item.director === director){
-      average += item.score
-      counter ++;
-      console.log('EXERCISE 3-> ${average}  ${counter}');
-    }
-  });
   
+  let average = 0;
   
-  return average / counter;
+  const directorFilms = array.filter(film => film.director === director);
+  const numberOfFilms = directorFilms.length;
+  let maxScore = directorFilms.reduce ((totalScore, film) => {
+    return totalScore + film.score;
+  },0);
+
+  console.log('EXERCICE 3 ->', directorFilms);
+  console.log('EXERCICE 3 ->', numberOfFilms);
   
+  average = Number((maxScore / numberOfFilms).toFixed(2));
+  
+  console.log('EXERCICE 3 ->',average);
+
+  return average
+
+
+// Para revisar
+  /*   const acc = array.reduce((acc, film) => {
+      if(film.director == director){
+        return acc + film.score;
+      }
+  },0);
+  
+  console.log('EXERCICE 3 ->', acc) */
 }
 
 // Exercise 4:  Alphabetic order by title 
