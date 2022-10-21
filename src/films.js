@@ -59,7 +59,32 @@ function orderAlphabetically(array) {
 }
 
 // Exercise 5: Order by year, ascending
-function orderByYear() {
+function orderByYear(array) {
+  const filmByYear = array
+  .map(film => film)
+  // .sort((c,d)=>c.title.localeCompare(d.title))
+  .sort((a, b) =>{ a.year - b.year
+    if(a.year === b.year){
+      //  comparar els noms dels titols i agafar el mes petit
+      // 
+      
+    }
+});
+  
+  // .sort(c,d)=>c.title.localeCompare(d.title));
+  
+
+  console.log('EXERCICE 5 ->', filmByYear);
+  return filmByYear;
+
+  c/* onst filmByYear = array
+  .map(film => film)
+  .sort(function(a, b){
+    return a.year - b.year
+  });
+
+  console.log('EXERCICE 5 ->', filmByYear);
+  return filmByYear; */
 
 }
 
