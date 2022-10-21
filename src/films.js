@@ -27,24 +27,11 @@ function moviesAverageOfDirector(array, director) {
     return totalScore + film.score;
   },0);
 
-  console.log('EXERCICE 3 ->', directorFilms);
-  console.log('EXERCICE 3 ->', numberOfFilms);
-  
+  // console.log('EXERCICE 3 ->', directorFilms);
+  // console.log('EXERCICE 3 ->', numberOfFilms);
   average = Number((maxScore / numberOfFilms).toFixed(2));
-  
-  console.log('EXERCICE 3 ->',average);
-
+  // console.log('EXERCICE 3 ->',average);
   return average
-
-
-// Para revisar
-  /*   const acc = array.reduce((acc, film) => {
-      if(film.director == director){
-        return acc + film.score;
-      }
-  },0);
-  
-  console.log('EXERCICE 3 ->', acc) */
 }
 
 // Exercise 4:  Alphabetic order by title 
@@ -54,38 +41,30 @@ function orderAlphabetically(array) {
   .map(film => film.title)
   .sort()
   .slice(0,20)
-  console.log('EXERCICE 4 ->', firtsTwuenty)
+  // console.log('EXERCICE 4 ->', firtsTwuenty)
   return firtsTwuenty;
 }
 
 // Exercise 5: Order by year, ascending
 function orderByYear(array) {
+  
   const filmByYear = array
   .map(film => film)
-  // .sort((c,d)=>c.title.localeCompare(d.title))
-  .sort((a, b) =>{ a.year - b.year
-    if(a.year === b.year){
-      //  comparar els noms dels titols i agafar el mes petit
-      // 
-      
-    }
-});
-  
-  // .sort(c,d)=>c.title.localeCompare(d.title));
-  
-
+  .sort((a, b) =>{ 
+    if(a.year > b.year){
+      return 1
+    }else if(a.year < b.year){
+      return -1
+    }else if(a.year === b.year){
+      if(a.title.localeCompare(b.title) == 1){
+        return 1
+      }else{
+        return -1
+      }
+    }  
+  }); 
   console.log('EXERCICE 5 ->', filmByYear);
   return filmByYear;
-
-  c/* onst filmByYear = array
-  .map(film => film)
-  .sort(function(a, b){
-    return a.year - b.year
-  });
-
-  console.log('EXERCICE 5 ->', filmByYear);
-  return filmByYear; */
-
 }
 
 // Exercise 6: Calculate the average of the movies in a category
