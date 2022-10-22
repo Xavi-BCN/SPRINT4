@@ -17,20 +17,37 @@ function getMoviesFromDirector(array, director) {
 }
 
 // Exercise 3: Calculate the average of the films of a given director. 
-function moviesAverageOfDirector(array, director) {
-  
+function moviesAverageOfDirector(array, director, category) {
   let average = 0;
-  
-  const directorFilms = array.filter(film => film.director === director);
-  const numberOfFilms = directorFilms.length;
-  let maxScore = directorFilms.reduce ((totalScore, film) => {
-    return totalScore + film.score;
-  },0);
-
-  // console.log('EXERCICE 3 ->', directorFilms);
-  // console.log('EXERCICE 3 ->', numberOfFilms);
-  average = Number((maxScore / numberOfFilms).toFixed(2));
-  // console.log('EXERCICE 3 ->',average);
+  let filmsNoScore = 0;
+  if(director!=""){
+    const directorFilms = array.filter(film => film.director === director);
+    const numberOfFilms = directorFilms.length;
+    let maxScore = directorFilms.reduce ((totalScore, film) => {
+      if (!film.score){
+        filmsNoScore ++;    
+      }  
+      return parseFloat(totalScore + film.score);
+    },0);
+  average = Number((maxScore / (numberOfFilms - filmsNoScore)).toFixed(2));
+  console.log('EXERCICE 3 ->',average);
+  }
+  if(category!=""){
+    const categoryFilms = array
+      .filter(film => {
+        if(film.genre.includes(category)){
+          return film
+        }        
+      });
+    const numberOfFilms = categoryFilms.length;
+    let maxScore = categoryFilms.reduce ((totalScore, film) => {
+      if (!film.score){
+        filmsNoScore ++;    
+      }  
+      return parseFloat(totalScore + film.score );
+    },0);
+    average = Number((maxScore / (numberOfFilms - filmsNoScore)).toFixed(2));
+  }
   return average
 }
 
@@ -47,7 +64,7 @@ function orderAlphabetically(array) {
 
 // Exercise 5: Order by year, ascending
 function orderByYear(array) {
-  
+
   const filmByYear = array
   .map(film => film)
   .sort((a, b) =>{ 
@@ -63,13 +80,15 @@ function orderByYear(array) {
       }
     }  
   }); 
-  console.log('EXERCICE 5 ->', filmByYear);
+  // console.log('EXERCICE 5 ->', filmByYear);
   return filmByYear;
 }
 
 // Exercise 6: Calculate the average of the movies in a category
-function moviesAverageByCategory() {
-
+function moviesAverageByCategory(array, category) {
+  const averageByCat = moviesAverageOfDirector(array, '', category);
+  console.log('EXERCICE 6 ->',averageByCat);
+  return averageByCat;
 }
 
 // Exercise 7: Modify the duration of movies to minutes
