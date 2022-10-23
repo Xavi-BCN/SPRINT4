@@ -107,13 +107,17 @@ function hoursToMinutes(array) {
     film.duration = totalMin;
     return film
   });
-  console.log('EXERCICE 7 ->',newDuration);
+  // console.log('EXERCICE 7 ->',newDuration);
   return newDuration;
 }
 
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear() {
-  
+function bestFilmOfYear(array,year) {
+  const filmsOfYear = [...array]
+  .filter(({...film}) => film.year === year);
+  filmsOfYear.splice(1,filmsOfYear.length);
+  // console.log('EXERCICE 8 ->',filmsOfYear);
+  return filmsOfYear;
 }
 
 
